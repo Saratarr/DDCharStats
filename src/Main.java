@@ -1,12 +1,15 @@
 import java.util.Arrays;
 // import DDCharStats.Rolls;
 import java.util.Random;
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
     // static public List<Rolls> roll;
     static Random rand = new Random();
+    static Scanner s = new Scanner(System.in);
 
     public static int rollAction() {
         int rollStats_1 = rand.nextInt(6);
@@ -16,23 +19,21 @@ public class Main {
 
         int x = rollStats_1 + rollStats_2 + rollStats_3 + rollStats_4;
 
+        if (x <= 6) {
+            x = x + 2;
+        }
         return x;
     }
 
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        // roll = new ArrayList<>();
-
-        for (String s : Arrays.asList("\nStrength: ", "\nAgility: ",
-                "\nIntelligence: ", "\nWisdom: ", "\nCharisma: ")) {
+        System.out.println("Adventurer, what is your name?");
+        String userName = s.nextLine();
+        System.out.println("\n-=" + userName + "=-");
+        for (String s : Arrays.asList("Strength: ", "Agility: ",
+                "Intelligence: ", "Wisdom: ", "Charisma: ")) {
             System.out.println(s + rollAction()); // Factory Pattern
         }
 
-        System.out.println("Happy adventuring!");
-        // roll.add(Rolls());
-        // roll.add(Rolls());
-        // roll.add(Rolls());
-        // roll.add(Rolls());
+        System.out.println("\n***Happy adventuring!***");
     }
 }
