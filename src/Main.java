@@ -12,17 +12,18 @@ public class Main {
     static Scanner s = new Scanner(System.in);
 
     public static int rollAction() {
-        int rollStats_1 = rand.nextInt(6);
-        int rollStats_2 = rand.nextInt(6);
-        int rollStats_3 = rand.nextInt(6);
-        int rollStats_4 = rand.nextInt(6);
+        int rollStats_1 = rand.nextInt(6) + 1;
+        int rollStats_2 = rand.nextInt(6) + 1;
+        int rollStats_3 = rand.nextInt(6) + 1;
+        int rollStats_4 = rand.nextInt(6) + 1;
 
         int x = rollStats_1 + rollStats_2 + rollStats_3 + rollStats_4;
+        int y = 0;
 
         if (x <= 6) {
-            x = x + 2;
-        }
-        return x;
+            y = x + 4;
+            return y;
+        } else { return x; }
     }
 
     public static void main(String[] args) {
