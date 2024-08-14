@@ -2,14 +2,13 @@ import java.util.Arrays;
 // import DDCharStats.Rolls;
 import java.util.Random;
 import java.util.Scanner;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
-    // static public List<Rolls> roll;
     static Random rand = new Random();
     static Scanner s = new Scanner(System.in);
+    static boolean reroll = false;
 
     public static int rollAction() {
         int rollStats_1 = rand.nextInt(6) + 1;
@@ -26,15 +25,35 @@ public class Main {
         } else { return x; }
     }
 
+    public static void rollPost() {
+        for (String s : Arrays.asList("Strength: ", "Agility: ",
+                "Intelligence: ", "Wisdom: ", "Charisma: ")) {
+            System.out.println(s + rollAction());
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Adventurer, what is your name?");
         String userName = s.nextLine();
         System.out.println("\n-=" + userName + "=-");
-        for (String s : Arrays.asList("Strength: ", "Agility: ",
-                "Intelligence: ", "Wisdom: ", "Charisma: ")) {
-            System.out.println(s + rollAction()); // Factory Pattern
-        }
+        rollPost();
 
+        System.out.println("\nRoll again? Y/N"); // How to loop? Is it possible without another class level object?
+        String rollAgain = s.nextLine();
+        if (rollAgain.equals("Y")) {
+            reroll = true;
+            while (reroll == true) {
+                System.out.println("\n-=" + userName + "=-");
+                rollAction();
+                rollPost();
+                System.out.println("\nRoll again? Y/N");
+                rollAgain = s.nextLine();
+                if (!rollAgain.equals("Y")) {
+                    reroll = false;
+                    break;
+                }
+            }
+        }
         System.out.println("\n***Happy adventuring!***");
     }
 }
