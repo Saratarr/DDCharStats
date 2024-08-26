@@ -54,6 +54,6 @@ public class Main {
                 }
             }
         }
-        System.out.println("\n***Happy adventuring!***");
+        System.out.println("\n***Happy adventuring! Come again***");
     }
 }
